@@ -1,5 +1,8 @@
 <div class="container-fluid">
     {{#each listings}}
+    	{{#unless this.title}}
+    		No job listings scraped, yet.
+		{{/unless}}
 		{{#if this.title}}
 		    <div id="listings">
 		        {{this.title}} {{this.link}}
