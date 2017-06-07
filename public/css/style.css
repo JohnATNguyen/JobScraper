@@ -15,9 +15,10 @@
 	background-color: whitesmoke;
 }*/
 
-.listingTitle {
+.listingTitle:link {
     vertical-align: middle;
     font-size: 150%;
+    text-decoration: none;
 }
 
 .buttons {

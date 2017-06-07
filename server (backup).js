@@ -8,7 +8,6 @@ var cheerio = require('cheerio');
 
 var Listing = require('./models/Listing.js');
 var Note = require('./models/Note.js');
-var Saved = require('./models/Saved.js');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -51,19 +50,6 @@ app.get('/', function(req, res) {
                 listings: doc
             }
             res.render('index', hbsObject);
-        }
-    });
-});
-
-app.get('/saved', function(req, res) {
-    Saved.find({}, function(err, doc) {
-        if (err) {
-            console.log(err);
-        } else {
-            var hbsObject = {
-                saveds: doc
-            }
-            res.render('saved', hbsObject);
         }
     });
 });

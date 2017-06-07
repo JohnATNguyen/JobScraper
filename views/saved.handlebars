@@ -28,19 +28,20 @@
 </nav>
 <div class="container-fluid">
     <div class="jumbotron">
-        <a href="/" id="title"><h1>Los Angeles JobScraper</h1></a>
-        <h3>INDEED.COM EDITION</h3>
+        <a href="/" id="title"><h1>Saved Listings</h1></a>
+        <h3>YOUR SAVED LISTINGS</h3>
     </div>
-    {{#each listings}} {{#if this.title}}
+    {{#each saveds}} {{#if this.title}}
     <div class="listing panel panel-default">
-    	<div class="panel-body">
-	        <a class="listingTitle" href={{this.link}}>{{this.title}}</a>
-	        <span class="buttons">
-		        <button type="button" class="btn btn-primary">Save Article</button>
-		    </span>
-	    </div>
+        <div class="panel-body">
+            <a class="listingTitle" href={{this.link}}>{{this.title}}</a>
+            <span class="buttons">
+                <button type="button" class="btn btn-info">Article Notes</button>
+                <button type="button" class="btn btn-warning">Delete Listing</button>
+            </span>
+        </div>
     </div>
     <div id="notes">
     </div>
-	{{/if}} {{/each}}
+    {{/if}} {{/each}}
 </div>

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
-var ListingSchema = new Schema({
+var SavedSchema = new Schema({
     title: {
         type: String,
         required: true
@@ -10,9 +10,13 @@ var ListingSchema = new Schema({
     link: {
         type: String,
         required: true
+    },
+    note: {
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
     }
 });
 
-var Listing = mongoose.model('Listing', ListingSchema);
+var Saved = mongoose.model('Saved', SavedSchema);
 
-module.exports = Listing;
+module.exports = Saved;
