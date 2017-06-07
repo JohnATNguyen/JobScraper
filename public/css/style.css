@@ -1,0 +1,25 @@
+.jumbotron {
+    text-align: center;
+    background-image: url(http://ralphwakerly.com/wp-content/uploads/2015/03/job-search-1024x512.jpg);
+    color: whitesmoke;
+    background-position: 50% 0%;
+}
+
+#title:link {
+    font-style: italic;
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+/*.listing {
+	background-color: whitesmoke;
+}*/
+
+.listingTitle {
+    vertical-align: middle;
+    font-size: 150%;
+}
+
+.buttons {
+    float: right;
+}
