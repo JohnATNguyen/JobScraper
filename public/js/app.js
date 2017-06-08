@@ -28,6 +28,14 @@ $('#myModal').on('show.bs.modal', function (event) {
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
   var modal = $(this);
   modal.find('.modal-title').text('Notes for Listing ' + recipient);
+  modal.find('#noteForm').attr('action', '/notes/'+recipient);
+  modal.find('#noteSubmit').attr('data-id', recipient);
   // modal.find('.modal-body input').val(recipient)
+  
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // $.getJSON('/notes', function(data) {
+  // 	for (var i = 0, n = data.length; i < n; i++) {
+  // 		$('#notes').append('')
+  // 	}
+  // }
 });
