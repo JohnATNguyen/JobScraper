@@ -1,3 +1,23 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 id="modalTitle" class="modal-title" id="myModalLabel">Article Notes</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <textarea form="noteForm" placeholder="Enter New Note" name="note"></textarea> -->
+      </div>
+      <div class="modal-footer">
+        <!-- <form id="noteForm" action="/notes" method="POST">
+            <button id="noteSubmit" type="submit" class="btn btn-default" data-dismiss="modal">Save Note</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+        </form> -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,19 +48,20 @@
 </nav>
 <div class="container-fluid">
     <div class="jumbotron">
-        <a href="/" id="title"><h1>Los Angeles JobScraper</h1></a>
-        <h3>INDEED.COM EDITION</h3>
+        <a href="/saves" id="title"><h1>Saved Listings</h1></a>
+        <h3>YOUR SAVED LISTINGS</h3>
     </div>
-    {{#each listings}} {{#if this.title}}
+    {{#each saves}} {{#if this.title}}
     <div id="listing" class="panel panel-default">
-    	<div class="panel-body">
-	        <a id="listingTitle" href={{this.link}}>{{this.title}}</a>
-	        <span id="buttons" class="buttons">
-		        <button id="saveListing" type="button" class="btn btn-primary" data-id={{this._id}}>Save Listing</button>
-		    </span>
-	    </div>
+        <div class="panel-body">
+            <a id="listingTitle" href={{this.link}}>{{this.title}}</a>
+            <span id="buttons" class="buttons">
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" data-whatever={{this._id}}>Article Notes</button>
+                <button id="deleteListing" type="button" class="btn btn-warning" data-id={{this._id}}>Delete Listing</button>
+            </span>
+        </div>
     </div>
     <div id="notes">
     </div>
-	{{/if}} {{/each}}
+    {{/if}} {{/each}}
 </div>

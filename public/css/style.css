@@ -11,11 +11,11 @@
     color: whitesmoke;
 }
 
-/*.listing {
+/*#listing {
 	background-color: whitesmoke;
 }*/
 
-.listingTitle:link {
+#listingTitle:link {
     vertical-align: middle;
     font-size: 150%;
     text-decoration: none;
@@ -23,4 +23,17 @@
 
 .buttons {
     float: right;
+}
+
+#modalTitle {
+	text-align: center;
+}
+
+textarea {
+	height: 100%;
+	width: 100%;
+}
+
+#noteSubmit {
+	
 }

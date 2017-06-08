@@ -8,7 +8,7 @@ var cheerio = require('cheerio');
 
 var Listing = require('./models/Listing.js');
 var Note = require('./models/Note.js');
-var Saved = require('./models/Saved.js');
+var Saves = require('./models/Saves.js');
 
 var app = express();
 var port = process.env.PORT || 3000;
@@ -42,6 +42,8 @@ db.once('open', function() {
     console.log('Mongoose connection sucessful.');
 });
 
+// begin listings
+
 app.get('/', function(req, res) {
     Listing.find({}, function(err, doc) {
         if (err) {
@@ -51,19 +53,6 @@ app.get('/', function(req, res) {
                 listings: doc
             }
             res.render('index', hbsObject);
-        }
-    });
-});
-
-app.get('/saved', function(req, res) {
-    Saved.find({}, function(err, doc) {
-        if (err) {
-            console.log(err);
-        } else {
-            var hbsObject = {
-                saveds: doc
-            }
-            res.render('saved', hbsObject);
         }
     });
 });
@@ -104,25 +93,122 @@ app.get('/listings', function(req, res) {
     });
 });
 
-app.get('listings/:id', function(req, res) {
+app.get('/listings/:id', function(req, res) {
     Listing.findOne({ _id: req.params.id })
         .populate('note')
         .exec(function(err, doc) {
-            if (error) {
-                console.log(error);
+            if (err) {
+                console.log(err);
             } else {
                 res.json(doc);
             }
         });
 });
 
-app.post('/listings/:id', function(req, res) {
+// begin saves
+
+app.get('/saves', function(req, res) {
+    Saves.find({}, function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            var hbsObject = {
+                saves: doc
+            }
+            res.render('saves', hbsObject);
+        }
+    });
+});
+
+app.post('/saves/:id', function(req, res) {
+    Listing.findOne({ _id: req.params.id }, function(err, doc) {
+        if (err) {
+            return err;
+        } else {
+            var result = {};
+            result.title = doc.title;
+            result.link = doc.link;
+            var newSaves = new Saves(result);
+            newSaves.save(function(err2, doc2) {
+                if (err2) {
+                    return err2;
+                }
+            }).then(function() {
+                Listing.remove({ _id: req.params.id }, function(err3, doc3) {
+                    if (err3) {
+                        return err3;
+                    } else {
+                        // res.redirect('/');
+                    }
+                });
+            });
+        }
+    });
+});
+
+app.get('/delete/:id', function(req, res) {
+    Saves.remove({ _id: req.params.id }, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            // res.redirect('/saves');
+        }
+    });
+});
+
+app.get('/saved', function(req, res) {
+    Saves.find({}, function(error, doc) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(doc);
+        }
+    });
+});
+
+app.get('/saved/:id', function(req, res) {
+    Saves.findOne({ _id: req.params.id })
+        .populate('note')
+        .exec(function(err, doc) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(doc);
+            }
+        });
+});
+
+// begin notes
+
+app.get('/notes', function(req, res) {
+    Saved.find({}, function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            var hbsObject = {
+                saves: doc
+            }
+            res.render('saved', hbsObject);
+        }
+    });
+});
+app.get('/notes', function(req, res) {
+    Listing.find({}, function(error, doc) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(doc);
+        }
+    });
+});
+
+app.post('/notes', function(req, res) {
     var newNote = new Note(req.body);
     newNote.save(function(error, doc) {
         if (error) {
             console.log(error);
         } else {
-            Listing.findOneAndUpdate({ _id: req.params.id }, { note: doc._id })
+            Saves.findOneAndUpdate({ _id: req.params.id }, { note: doc._id })
                 .exec(function(err, doc) {
                     if (err) {
                         console.log(err);
@@ -133,6 +219,20 @@ app.post('/listings/:id', function(req, res) {
         }
     });
 });
+
+app.get('/notes/:id', function(req, res) {
+    Listing.findOne({ _id: req.params.id })
+        .populate('note')
+        .exec(function(err, doc) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json(doc);
+            }
+        });
+});
+
+// end routes
 
 app.listen(port, function() {
     console.log('App running on port ' + port + ' !');
