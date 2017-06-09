@@ -210,39 +210,25 @@ app.get('/erase/:id', function(req, res) {
     });
 });
 
-// app.get('/notes', function(req, res) {
-//     Saved.find({}, function(err, doc) {
-//         if (err) {
-//             console.log(err);
-//         } else {
-//             var hbsObject = {
-//                 saves: doc
-//             }
-//             res.render('saved', hbsObject);
-//         }
-//     });
-// });
-// app.get('/notes', function(req, res) {
-//     Listing.find({}, function(error, doc) {
-//         if (error) {
-//             console.log(error);
-//         } else {
-//             res.json(doc);
-//         }
-//     });
-// });
+app.get('/notes', function(req, res) {
+    Note.find({}, function(error, doc) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(doc);
+        }
+    });
+});
 
-// app.get('/notes/:id', function(req, res) {
-//     Note.findOne({ _id: req.params.id })
-//         .populate('note')
-//         .exec(function(err, doc) {
-//             if (err) {
-//                 console.log(err);
-//             } else {
-//                 res.json(doc);
-//             }
-//         });
-// });
+app.get('/notes/:id', function(req, res) {
+    Note.findOne({ _id: req.params.id }, function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(doc);
+        }
+    });
+});
 
 // end routes
 
