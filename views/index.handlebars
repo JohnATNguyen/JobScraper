@@ -1,3 +1,16 @@
+<div id="duplicationModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <br>
+      <p id="duplicationModalBody">This listing is already saved.</p>
+      <form id="duplicationForm" method="GET">
+        <button type="submit" class="btn btn-warning">Remove Listing</button>
+      </form>
+      <br>
+    </div>
+  </div>
+</div>
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -36,11 +49,9 @@
     	<div class="panel-body">
 	        <a id="listingTitle" href={{this.link}}>{{this.title}}</a>
 	        <span id="buttons" class="buttons">
-		        <button id="saveListing" type="button" class="btn btn-primary" data-id={{this._id}}>Save Listing</button>
+		        <button id="saveListing" type="button" class="btn btn-primary" data-id={{this._id}} link={{this.link}}>Save Listing</button>
 		    </span>
 	    </div>
-    </div>
-    <div id="notes">
     </div>
 	{{/if}} {{/each}}
 </div>

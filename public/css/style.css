@@ -25,13 +25,21 @@
     float: right;
 }
 
+#duplicationModal {
+	text-align: center;
+}
+
+#duplicationModalBody {
+	vertical-align: middle;
+}
+
 #modalTitle {
     text-align: center;
 }
 
 #notes {
     text-align: center;
-/*    border: 1px solid gray;*/
+    /*border: 1px solid gray;*/
     vertical-align: middle;
 }
 

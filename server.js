@@ -83,6 +83,16 @@ app.post('/scrape', function(req, res) {
     });
 });
 
+app.get('/remove/:id', function(req, res) {
+    Listing.remove({ _id: req.params.id }, function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect('/');
+        }
+    });
+});
+
 app.get('/listings', function(req, res) {
     Listing.find({}, function(error, doc) {
         if (error) {

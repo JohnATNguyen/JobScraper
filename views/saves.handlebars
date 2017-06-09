@@ -1,4 +1,4 @@
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="notesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -59,7 +59,7 @@
         <div class="panel-body">
             <a id="listingTitle" href={{this.link}}>{{this.title}}</a>
             <span id="buttons" class="buttons">
-                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal" data-whatever={{this._id}}>Article Notes</button>
+                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#notesModal" data-whatever={{this._id}}>Article Notes</button>
                 <button id="deleteListing" type="button" class="btn btn-warning" data-id={{this._id}}>Delete Listing</button>
             </span>
         </div>
