@@ -11,6 +11,7 @@
     color: whitesmoke;
 }
 
+
 /*#listing {
 	background-color: whitesmoke;
 }*/
@@ -26,14 +27,25 @@
 }
 
 #modalTitle {
-	text-align: center;
+    text-align: center;
+}
+
+#notes {
+    text-align: center;
+/*    border: 1px solid gray;*/
+    vertical-align: middle;
+}
+
+#individualNote {
+    overflow: auto;
+    vertical-align: middle;
+}
+
+#noteDelete {
+    float: right;
 }
 
 textarea {
-	height: 100%;
-	width: 100%;
-}
-
-#noteSubmit {
-	
+    height: 100%;
+    width: 100%;
 }

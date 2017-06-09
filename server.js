@@ -180,6 +180,36 @@ app.get('/saved/:id', function(req, res) {
 
 // begin notes
 
+// :id here is id of the listing that the note belongs to
+app.post('/notes/:id', function(req, res) {
+    var newNote = new Note(req.body);
+    newNote.save(function(err, doc) {
+        if (err) {
+            console.log(err);
+        } else {
+            Save.findOneAndUpdate({ _id: req.params.id }, { $push: { note: doc._id } }, { new: true })
+                .exec(function(err, doc) {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        // res.send(doc);
+                        res.redirect('/saves');
+                    }
+                });
+        }
+    });
+});
+
+app.get('/erase/:id', function(req, res) {
+    Note.remove({ _id: req.params.id }, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            // res.redirect('/saves');
+        }
+    });
+});
+
 // app.get('/notes', function(req, res) {
 //     Saved.find({}, function(err, doc) {
 //         if (err) {
@@ -201,25 +231,6 @@ app.get('/saved/:id', function(req, res) {
 //         }
 //     });
 // });
-
-app.post('/notes/:id', function(req, res) {
-    var newNote = new Note(req.body);
-    newNote.save(function(err, doc) {
-        if (err) {
-            console.log(err);
-        } else {
-            Save.findOneAndUpdate({ _id: req.params.id }, { note: doc._id })
-                .exec(function(err, doc) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        // res.send(doc);
-                        res.redirect('/saves');
-                    }
-                });
-        }
-    });
-});
 
 // app.get('/notes/:id', function(req, res) {
 //     Note.findOne({ _id: req.params.id })

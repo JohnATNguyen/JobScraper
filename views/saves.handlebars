@@ -7,11 +7,12 @@
       </div>
       <div class="modal-body">
         <div id="notes"></div>
+        <!-- <br> -->
         <textarea form="noteForm" placeholder="Enter New Note" name="body"></textarea>
       </div>
       <div class="modal-footer">
         <form id="noteForm" method="POST">
-            <button id="noteSubmit" type="submit" class="btn btn-success">Save Note</button>
+            <button type="submit" class="btn btn-success">Save Note</button>
             <!-- data-dismiss="modal" -->
             <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
         </form>
@@ -62,8 +63,6 @@
                 <button id="deleteListing" type="button" class="btn btn-warning" data-id={{this._id}}>Delete Listing</button>
             </span>
         </div>
-    </div>
-    <div id="notes">
     </div>
     {{/if}} {{/each}}
 </div>
