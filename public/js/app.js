@@ -15,9 +15,9 @@ $(document).on("click", "#saveListing", function() {
                 method: 'POST',
                 url: '/saves/' + thisId
             }).then(function() {
-                // window.location='/';
+                window.location='/';
             });
-            window.location = '/';
+            // window.location = '/';
         } else {
             $('#duplicationForm').attr('action', '/remove/' + thisId);
             $('#duplicationModal').modal('show');
@@ -32,9 +32,9 @@ $(document).on("click", "#deleteListing", function() {
         method: 'GET',
         url: '/delete/' + thisId
     }).then(function() {
-        // window.location='/saves';
+        window.location='/saves';
     });
-    window.location = '/saves';
+    // window.location = '/saves';
 });
 
 $('#notesModal').on('show.bs.modal', function(event) {
@@ -49,13 +49,17 @@ $('#notesModal').on('show.bs.modal', function(event) {
 
     // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
     $.getJSON('/saved/' + recipient, function(data) {
-        $('#notes').empty();
-        // $('#notes').html('<br>');
-        for (var i = 0, n = data.note.length; i < n; i++) {
-            $('#notes').append(`
-  				<p id="individualNote">${data.note[i].body}<button type="button" id="noteDelete" class="btn btn-danger" data-id=${data.note[i]._id}>Delete</button></p>
-  			`);
-        }
+    	if (data.note.length) {
+	        $('#notes').empty();
+	        // $('#notes').html('<br>');
+	        for (var i = 0, n = data.note.length; i < n; i++) {
+	            $('#notes').append(`
+	  				<p id="individualNote">${data.note[i].body}<button type="button" id="noteDelete" class="btn btn-danger" data-id=${data.note[i]._id}>Delete</button></p>
+	  			`);
+	        }
+	    } else {
+	    	$('#notes').html('<p>This article doesn\'t have any notes yet.</p>');
+	    }
     });
 });
 
@@ -66,7 +70,7 @@ $(document).on("click", "#noteDelete", function() {
         method: 'GET',
         url: '/erase/' + thisId
     }).then(function() {
-        // window.location='/saves';
+        window.location='/saves';
     });
-    window.location = '/saves';
+    // window.location = '/saves';
 });

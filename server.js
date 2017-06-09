@@ -149,6 +149,7 @@ app.post('/saves/:id', function(req, res) {
                         return err3;
                     } else {
                         // res.redirect('/');
+                        res.end();
                     }
                 });
             });
@@ -162,6 +163,7 @@ app.get('/delete/:id', function(req, res) {
             console.log(err);
         } else {
             // res.redirect('/saves');
+            res.end();
         }
     });
 });
@@ -216,6 +218,7 @@ app.get('/erase/:id', function(req, res) {
             console.log(err);
         } else {
             // res.redirect('/saves');
+            res.end();
         }
     });
 });

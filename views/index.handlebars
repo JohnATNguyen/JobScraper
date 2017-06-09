@@ -44,6 +44,9 @@
         <a href="/" id="title"><h1>Los Angeles JobScraper</h1></a>
         <h3>INDEED.COM EDITION</h3>
     </div>
+    {{#unless listings.length}}
+    <center><p>You don't have any scraped listings yet.</p></center>
+    {{/unless}}
     {{#each listings}} {{#if this.title}}
     <div id="listing" class="panel panel-default">
     	<div class="panel-body">
